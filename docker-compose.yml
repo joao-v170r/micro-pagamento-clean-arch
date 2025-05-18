@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  pagamento-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pagamento-app
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://admin:admin123@mongo-cliente:27017/db_pagamento?authSource=admin
+      - SPRING_PROFILES_ACTIVE=prod
+    depends_on:
+      mongo-pagamento:
+        condition: service_healthy
+    networks:
+      - pagamento-network
+      - microservices-net
+    restart: unless-stopped
+    healthcheck:
+      test: |
+        mongosh --quiet --eval '
+        db.getSiblingDB("admin").auth("admin", "admin123");
+        db.adminCommand({ ping: 1 })'
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  mongo-pagamento:
+    image: mongo:7.0
+    container_name: mongo-pagamento
+    ports:
+      - "27019:27017" # Expor apenas se necessário para acesso externo
+    volumes:
+      - mongodb_pagamento_data:/data/db # Volume específico para este serviço
+      - ./mongo-init:/docker-entrypoint-initdb.d
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin123
+      - MONGO_INITDB_DATABASE=db_pagamento
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 30s
+      retries: 5
+    networks:
+      - pagamento-network
+    restart: unless-stopped
+networks:
+  pagamento-network:
+    driver: bridge
+    name: pagamento-network # Nome explícito para facilitar conexões externas
+  microservices-net:
+    external: true
+
+volumes:
+  mongodb_pagamento_data: # Volume dedicado para este MongoDB

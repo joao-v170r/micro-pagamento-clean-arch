@@ -6,25 +6,33 @@ import br.com.microservice.pagamento.gateway.database.mongo.entity.PagamentoEnti
 public class PagamentoMapper {
     public static Pagamento mapToDomain(PagamentoEntity dto) {
         return Pagamento.reconstituir(
+                dto.getCodGateway(),
+                dto.getDtAtualizacao(),
+                dto.getDtCriacao(),
+                dto.getGatewayPagamento(),
+                dto.getMetodoPagamento(),
+                dto.getMoedaPagamento(),
+                dto.getValorTotal(),
+                dto.getPedidoId(),
                 dto.getId(),
-                dto.getNome(),
-                new CPF(dto.getCpf()),
-                dto.getEmail(),
-                dto.getDataNascimento(),
-                dto.getEnderecos(),
-                dto.getTelefones()
+                dto.getDetalhes(),
+                dto.getStatus()
         );
     }
 
     public static PagamentoEntity mapToEntity(Pagamento domain) {
         return new PagamentoEntity(
                 domain.getId(),
-                domain.getNome(),
-                domain.getCpf().numero(),
-                domain.getEmail(),
-                domain.getDataNascimento(),
-                domain.getEnderecos(),
-                domain.getTelefones()
+                domain.getPedidoId(),
+                domain.getValorTotal(),
+                domain.getMoedaPagamento(),
+                domain.getMetodoPagamento(),
+                domain.getGatewayPagamento(),
+                domain.getDetalhes(),
+                domain.getStatus(),
+                domain.getDtCriacao(),
+                domain.getDtAtualizacao(),
+                domain.getCodGateway()
         );
     }
 }

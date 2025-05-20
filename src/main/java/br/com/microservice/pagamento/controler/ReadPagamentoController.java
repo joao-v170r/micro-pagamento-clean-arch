@@ -33,6 +33,14 @@ public class ReadPagamentoController {
         return ResponseEntity.ok(useCase.find(id));
     }
 
+    @GetMapping("/pedido/{id}")
+    @Operation(
+            summary = "Buscar pagamento"
+    )
+    public ResponseEntity<PagamentoDTO> findByPedidoId(@PathVariable String pedidoId) {
+        return ResponseEntity.ok(useCase.findByPedidoId(pedidoId));
+    }
+
     @GetMapping
     @Operation(
             summary = "Listar todos os clientes"

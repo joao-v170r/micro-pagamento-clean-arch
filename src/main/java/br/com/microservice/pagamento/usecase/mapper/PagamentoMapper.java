@@ -6,25 +6,33 @@ import br.com.microservice.pagamento.dto.PagamentoDTO;
 public class PagamentoMapper {
     public static Pagamento mapToDomain(PagamentoDTO dto) {
         return Pagamento.reconstituir(
+                dto.codGateway(),
+                dto.dtAtualizacao(),
+                dto.dtCriacao(),
+                dto.gatewayPagamento(),
+                dto.metodoPagamento(),
+                dto.moedaPagamento(),
+                dto.valorTotal(),
+                dto.pedidoId(),
                 dto.id(),
-                dto.nome(),
-                new CPF(dto.cpf()),
-                dto.email(),
-                dto.dataNascimento(),
-                dto.enderecos(),
-                dto.telefones()
+                dto.detalhes(),
+                dto.status()
         );
     }
 
     public static PagamentoDTO mapToDTO(Pagamento pagamento) {
         return new PagamentoDTO(
                 pagamento.getId(),
-                pagamento.getNome(),
-                pagamento.getCpf().numero(),
-                pagamento.getEmail(),
-                pagamento.getDataNascimento(),
-                pagamento.getEnderecos(),
-                pagamento.getTelefones()
+                pagamento.getPedidoId(),
+                pagamento.getValorTotal(),
+                pagamento.getMoedaPagamento(),
+                pagamento.getMetodoPagamento(),
+                pagamento.getGatewayPagamento(),
+                pagamento.getDetalhes(),
+                pagamento.getStatus(),
+                pagamento.getDtCriacao(),
+                pagamento.getDtAtualizacao(),
+                pagamento.getCodGateway()
         );
     }
 }

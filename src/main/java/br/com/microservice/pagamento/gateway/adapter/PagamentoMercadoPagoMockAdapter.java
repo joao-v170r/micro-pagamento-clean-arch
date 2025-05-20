@@ -5,13 +5,17 @@ import br.com.microservice.pagamento.domain.value_objects.StatusPagamento;
 import br.com.microservice.pagamento.gateway.PagamentoExternalGateway;
 import br.com.microservice.pagamento.gateway.dto.InputExternalPagamentoDTO;
 import br.com.microservice.pagamento.gateway.dto.OutputExternalPagamentoDTO;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class PagamentoMercadoPagoAdapter implements PagamentoExternalGateway {
+@Component
+@RequiredArgsConstructor
+public class PagamentoMercadoPagoMockAdapter implements PagamentoExternalGateway {
 
     @Override
     public OutputExternalPagamentoDTO solicitacaoPagamento(InputExternalPagamentoDTO input) {

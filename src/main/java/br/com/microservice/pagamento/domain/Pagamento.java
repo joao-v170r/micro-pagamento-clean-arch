@@ -4,6 +4,7 @@ import br.com.microservice.pagamento.domain.value_objects.MetodoPagamento;
 import br.com.microservice.pagamento.domain.value_objects.MoedaPagamento;
 import br.com.microservice.pagamento.domain.value_objects.StatusPagamento;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
@@ -15,14 +16,16 @@ import java.util.HashMap;
 public class Pagamento {
 
     private final String id;
-    private final String idPedido;
+    private final String pedidoId;
     private final BigDecimal valorTotal;
     private final MoedaPagamento moedaPagamento;
     private final MetodoPagamento metodoPagamento;
     private final String gatewayPagamento;
     private final HashMap<String, String> detalhes;
+    @Setter
     private StatusPagamento status;
     private final LocalDateTime dtCriacao;
+    @Setter
     private LocalDateTime dtAtualizacao;
     private final String codGateway;
 
@@ -34,7 +37,7 @@ public class Pagamento {
             MetodoPagamento metodoPagamento,
             MoedaPagamento moedaPagamento,
             BigDecimal valorTotal,
-            String idPedido,
+            String pedidoId,
             String id, HashMap<String, String> detalhes,
             StatusPagamento status
     ) {
@@ -45,7 +48,7 @@ public class Pagamento {
         this.metodoPagamento = metodoPagamento;
         this.moedaPagamento = moedaPagamento;
         this.valorTotal = valorTotal;
-        this.idPedido = idPedido;
+        this.pedidoId = pedidoId;
         this.id = id;
         this.detalhes = detalhes;
         this.status = status;
@@ -101,14 +104,6 @@ public class Pagamento {
                 detalhes,
                 status
         );
-    }
-
-    public void setDtAtualizacao(LocalDateTime dtAtualizacao) {
-        this.dtAtualizacao = dtAtualizacao;
-    }
-
-    public void setStatus(StatusPagamento status) {
-        this.status = status;
     }
 
     public void addDetalhesPagamento(String key, String valeu) {

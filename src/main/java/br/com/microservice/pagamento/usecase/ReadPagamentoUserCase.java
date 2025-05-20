@@ -24,6 +24,12 @@ public class ReadPagamentoUserCase {
         return PagamentoMapper.mapToDTO(pagamento);
     }
 
+    public PagamentoDTO findByPedidoId(String pedidoId) {
+        Pagamento pagamento = gateway.findByPedidoId(pedidoId).orElseThrow(
+                () -> new PagamentoError.PagamentoNotFoundException("pagamento não encontrado"));
+        return PagamentoMapper.mapToDTO(pagamento);
+    }
+
     public List<PagamentoDTO> findAll(Pageable page) {
         List<Pagamento> pagamentos = gateway.findAll(page);
         return pagamentos.stream().map(PagamentoMapper::mapToDTO).toList();

@@ -36,6 +36,7 @@ public class CreatePagamentoController {
                     input.pedidoId(),
                     input.metodoPagamento(),
                     input.valorTotal()
+                )
         ));
     }
 }

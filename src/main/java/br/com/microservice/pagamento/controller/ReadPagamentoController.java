@@ -1,7 +1,7 @@
-package br.com.microservice.pagamento.controler;
+package br.com.microservice.pagamento.controller;
 
 import br.com.microservice.pagamento.dto.PagamentoDTO;
-import br.com.microservice.pagamento.usecase.ReadPagamentoUserCase;
+import br.com.microservice.pagamento.usecase.ReadPagamentoUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Pageable;
@@ -19,9 +19,9 @@ import java.util.List;
 @Tag(name = "Pagamento", description = "Endpoints que controlam pagamentos")
 public class ReadPagamentoController {
 
-    final ReadPagamentoUserCase useCase;
+    final ReadPagamentoUseCase useCase;
 
-    public ReadPagamentoController(ReadPagamentoUserCase useCase) {
+    public ReadPagamentoController(ReadPagamentoUseCase useCase) {
         this.useCase = useCase;
     }
 

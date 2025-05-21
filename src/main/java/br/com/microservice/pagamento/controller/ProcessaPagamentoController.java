@@ -1,4 +1,4 @@
-package br.com.microservice.pagamento.controler;
+package br.com.microservice.pagamento.controller;
 
 import br.com.microservice.pagamento.dto.PagamentoDTO;
 import br.com.microservice.pagamento.usecase.ProcessamentoPagamentoUseCase;

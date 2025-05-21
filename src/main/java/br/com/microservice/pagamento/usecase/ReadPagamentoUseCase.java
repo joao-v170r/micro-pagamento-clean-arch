@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ReadPagamentoUserCase {
+public class ReadPagamentoUseCase {
     private final CrudPagamentoGateway gateway;
 
-    public ReadPagamentoUserCase(CrudPagamentoGateway gateway) {
+    public ReadPagamentoUseCase(CrudPagamentoGateway gateway) {
         this.gateway = gateway;
     }
 

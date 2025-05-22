@@ -115,7 +115,7 @@ JSON
 ```
 Note: O id, dtCriacao, dtAtualizacao e codGateway são valores gerados dinamicamente e podem variar.
 
-POST /processa-pagamento/{id} - Processar Pagamento
+#### POST /processa-pagamento/{id} - Processar Pagamento
 Exemplo de Envio (Path Variable):
 
 id: 60d0fe4f3b14f52a7c4a1b02 (Exemplo de ID de um pagamento pendente)
@@ -145,7 +145,7 @@ JSON
 ```
 Note: O dtAtualizacao e o status CONCLUIDO refletem a atualização após o processamento.
 
-GET /pagamento/{id} - Buscar Pagamento por ID
+#### GET /pagamento/{id} - Buscar Pagamento por ID
 Exemplo de Envio (Path Variable):
 
 id: 60d0fe4f3b14f52a7c4a1b02
@@ -172,7 +172,7 @@ JSON
     "codGateway": "PIX-UUID-DO-GATEWAY"
 }
 ```
-GET /pagamento/pedido/{pedidoId} - Buscar Pagamento por ID do Pedido
+#### GET /pagamento/pedido/{pedidoId} - Buscar Pagamento por ID do Pedido
 Exemplo de Envio (Path Variable):
 
 pedidoId: 60d0fe4f3b14f52a7c4a1b01
@@ -200,7 +200,7 @@ JSON
     "codGateway": "PIX-UUID-DO-GATEWAY"
 }
 ```
-GET /pagamento - Listar Todos os Pagamentos
+#### GET /pagamento - Listar Todos os Pagamentos
 Exemplo de Envio (Query Parameters - Opcional):
 
 page: 0 (padrão 0)
@@ -247,10 +247,15 @@ JSON
     }
 ]
 ```
-Qualidade de software
-Testes
-Foram realizados testes na API, buscando alcançar uma alta cobertura de código.
 
-A cobertura de testes pode ser gerada executando: mvn jacoco:report.
+***
 
-A imagem abaixo mostra o relatório de cobertura de código (exemplo):
+## Qualidade de software
+
+### Testes
+
+Foi realizado testes na API, buscando alcançar mais de 80% de cobertura
+
+<div align="center">
+    <img src="src/main/resources/img/teste.png" width="1466px" height="268px">
+</div>

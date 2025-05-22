@@ -1,4 +1,4 @@
-# micro-pagamento-clean-arch
+# Tech Challenge 04 - Pagamento
 
 Microsserviço de pagamento utilizando arquitetura limpa. Este projeto é parte do Tech Challenge 04 da pós-graduação de `Arquitetura e Desenvolvimento Java` na instituição FIAP.
 
